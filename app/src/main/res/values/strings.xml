@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Punto de Interes</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="label_nombre_punto_interes">Nombre:</string>
+    <string name="label_descripcion_punto_interes">Descripción:</string>
+    <string name="title_activity_formulario_punto_interes">FormularioPuntoInteresActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+</resources>
