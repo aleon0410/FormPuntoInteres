@@ -17,8 +17,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FormularioPuntoInteresActivity"
-            android:label="@string/title_activity_formulario_punto_interes" >
+            android:name=".PuntoInteresFormulario"
+            android:label="@string/title_activity_punto_interes_formulario" >
         </activity>
     </application>
 
