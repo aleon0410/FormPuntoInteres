@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,8 +17,8 @@ import android.widget.Toast;
 
 public class PuntoInteresFormulario extends Activity {
 
-    private SituacionDbAdapter dbAdapterSituacion ;
-    private SituacionSpinnerAdapter situacionSpinnerAdapter ;
+    private TipoIntervencionDbAdapter dbAdapterSituacion ;
+    private TipoIntervencionSpinnerAdapter tipoIntervencionSpinnerAdapter;
 
     //
     // Modo del formulario
@@ -30,7 +29,7 @@ public class PuntoInteresFormulario extends Activity {
     // Identificador del registro que se edita cuando la opción es MODIFICAR
     //
     private long id ;
-    private PuntoInteres hipoteca = new PuntoInteres(this);
+    private PuntoInteres puntoInteres = new PuntoInteres(this);
 
     //
     // Elementos de la vista
@@ -77,8 +76,8 @@ public class PuntoInteresFormulario extends Activity {
         //
         // Creamos el adaptador del spinner de situaciones y lo asociamos
         //
-        situacionSpinnerAdapter = new SituacionSpinnerAdapter(this, Situacion.getAll(this, null));
-        situacion.setAdapter(situacionSpinnerAdapter);
+        tipoIntervencionSpinnerAdapter = new TipoIntervencionSpinnerAdapter(this, TipoIntervencion.getAll(this, null));
+        situacion.setAdapter(tipoIntervencionSpinnerAdapter);
 
         //
         // Obtenemos el identificador del registro si viene indicado
@@ -141,18 +140,18 @@ public class PuntoInteresFormulario extends Activity {
     private void consultar(long id)
     {
         //
-        // Consultamos la hipoteca por el identificador
+        // Consultamos la puntoInteres por el identificador
         //
-        hipoteca = PuntoInteres.find(this, id);
+        puntoInteres = PuntoInteres.find(this, id);
 
-        nombre.setText(hipoteca.getNombre());
-        condiciones.setText(hipoteca.getCondiciones());
-        contacto.setText(hipoteca.getContacto());
-        telefono.setText(hipoteca.getTelefono());
-        email.setText(hipoteca.getEmail());
-        observaciones.setText(hipoteca.getObservaciones());
-        pasivo.setChecked(hipoteca.isPasivo());
-        situacion.setSelection(situacionSpinnerAdapter.getPositionById(hipoteca.getSituacionId()));
+        nombre.setText(puntoInteres.getNombre());
+        condiciones.setText(puntoInteres.getCondiciones());
+        contacto.setText(puntoInteres.getContacto());
+        telefono.setText(puntoInteres.getTelefono());
+        email.setText(puntoInteres.getEmail());
+        observaciones.setText(puntoInteres.getObservaciones());
+        pasivo.setChecked(puntoInteres.isPasivo());
+        situacion.setSelection(tipoIntervencionSpinnerAdapter.getPositionById(puntoInteres.getSituacionId()));
 
     }
 
@@ -179,16 +178,16 @@ public class PuntoInteresFormulario extends Activity {
 
     private void guardar()
     {
-        hipoteca.setNombre(nombre.getText().toString());
-        hipoteca.setCondiciones(condiciones.getText().toString());
-        hipoteca.setContacto(contacto.getText().toString());
-        hipoteca.setTelefono(telefono.getText().toString());
-        hipoteca.setEmail(email.getText().toString());
-        hipoteca.setObservaciones(observaciones.getText().toString());
-        hipoteca.setPasivo(pasivo.isChecked());
-        hipoteca.setSituacionId(situacion.getSelectedItemId());
+        puntoInteres.setNombre(nombre.getText().toString());
+        puntoInteres.setCondiciones(condiciones.getText().toString());
+        puntoInteres.setContacto(contacto.getText().toString());
+        puntoInteres.setTelefono(telefono.getText().toString());
+        puntoInteres.setEmail(email.getText().toString());
+        puntoInteres.setObservaciones(observaciones.getText().toString());
+        puntoInteres.setPasivo(pasivo.isChecked());
+        puntoInteres.setSituacionId(situacion.getSelectedItemId());
 
-        hipoteca.save();
+        puntoInteres.save();
 
         if (modo == MainActivity.C_CREAR)
         {
@@ -218,10 +217,10 @@ public class PuntoInteresFormulario extends Activity {
         menu.clear();
 
         if (modo == MainActivity.C_VISUALIZAR)
-            getMenuInflater().inflate(R.menu.hipoteca_formulario_ver, menu);
+            getMenuInflater().inflate(R.menu.punto_interes_formulario_ver, menu);
 
         else
-            getMenuInflater().inflate(R.menu.hipoteca_formulario_editar, menu);
+            getMenuInflater().inflate(R.menu.punto_interes_formulario_editar, menu);
 
         return true;
     }
@@ -266,7 +265,7 @@ public class PuntoInteresFormulario extends Activity {
         dialogEliminar.setPositiveButton(getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int boton) {
-                hipoteca.delete();
+                puntoInteres.delete();
                 Toast.makeText(PuntoInteresFormulario.this, R.string.hipoteca_eliminar_confirmacion, Toast.LENGTH_SHORT).show();
 				/*
 				 * Devolvemos el control

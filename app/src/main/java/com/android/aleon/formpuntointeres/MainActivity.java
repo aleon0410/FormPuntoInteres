@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -26,7 +25,7 @@ public class MainActivity extends ListActivity {
     public static final int C_CONFIGURAR = 555 ;
 
     private PuntoInteresDbAdapter dbAdapter;
-    private HipotecasAdapter hipotecasAdapter ;
+    private PuntosInteresAdapter puntosInteresAdapter;
     private ListView lista;
 
     private String filtro ;
@@ -50,15 +49,15 @@ public class MainActivity extends ListActivity {
 
     private void consultar()
     {
-        hipotecasAdapter = new HipotecasAdapter(this, dbAdapter.getHipotecas(filtro));
+        puntosInteresAdapter = new PuntosInteresAdapter(this, dbAdapter.getHipotecas(filtro));
 
-        lista.setAdapter(hipotecasAdapter);
+        lista.setAdapter(puntosInteresAdapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.hipoteca, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -158,7 +157,7 @@ public class MainActivity extends ListActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
-        menu.setHeaderTitle(hipotecasAdapter.getItem(((AdapterView.AdapterContextMenuInfo) menuInfo).position).getNombre());
+        menu.setHeaderTitle(puntosInteresAdapter.getItem(((AdapterView.AdapterContextMenuInfo) menuInfo).position).getNombre());
         menu.add(Menu.NONE, C_VISUALIZAR, Menu.NONE, R.string.menu_visualizar);
         menu.add(Menu.NONE, C_EDITAR, Menu.NONE, R.string.menu_editar);
         menu.add(Menu.NONE, C_ELIMINAR, Menu.NONE, R.string.menu_eliminar);

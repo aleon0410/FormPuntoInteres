@@ -125,33 +125,33 @@ public class PuntoInteres {
 
         Cursor c = dbAdapter.getRegistro(id);
 
-        PuntoInteres hipoteca = PuntoInteres.cursorToHipoteca(context, c);
+        PuntoInteres puntoInteres = PuntoInteres.cursorToPuntoInteres(context, c);
 
         c.close();
 
-        return hipoteca;
+        return puntoInteres;
     }
 
-    public static PuntoInteres cursorToHipoteca(Context context, Cursor c)
+    public static PuntoInteres cursorToPuntoInteres(Context context, Cursor c)
     {
-        PuntoInteres hipoteca = null;
+        PuntoInteres puntoInteres = null;
 
         if (c != null)
         {
-            hipoteca = new PuntoInteres(context);
+            puntoInteres = new PuntoInteres(context);
 
-            hipoteca.setId(c.getLong(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_ID)));
-            hipoteca.setNombre(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_NOMBRE)));
-            hipoteca.setCondiciones(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_CONDICIONES)));
-            hipoteca.setContacto(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_CONTACTO)));
-            hipoteca.setEmail(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_EMAIL)));
-            hipoteca.setTelefono(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_TELEFONO)));
-            hipoteca.setObservaciones(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_OBSERVACIONES)));
-            hipoteca.setPasivo(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_PASIVO)).equals("S"));
-            hipoteca.setSituacionId(c.getLong(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_SITUACION)));
+            puntoInteres.setId(c.getLong(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_ID)));
+            puntoInteres.setNombre(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_NOMBRE)));
+            puntoInteres.setCondiciones(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_CONDICIONES)));
+            puntoInteres.setContacto(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_CONTACTO)));
+            puntoInteres.setEmail(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_EMAIL)));
+            puntoInteres.setTelefono(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_TELEFONO)));
+            puntoInteres.setObservaciones(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_OBSERVACIONES)));
+            puntoInteres.setPasivo(c.getString(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_PASIVO)).equals("S"));
+            puntoInteres.setSituacionId(c.getLong(c.getColumnIndex(PuntoInteresDbAdapter.C_COLUMNA_SITUACION)));
         }
 
-        return hipoteca ;
+        return puntoInteres ;
     }
 
     private ContentValues toContentValues()

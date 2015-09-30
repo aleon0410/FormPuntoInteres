@@ -106,20 +106,20 @@ public class PuntoInteresDbHelper extends SQLiteOpenHelper{
         //
         // Upgrade versión 4: Incluir la clasificación SITUACION para las hipotecas
         //
-        db.execSQL( "CREATE TABLE SITUACION(" +
+        db.execSQL( "CREATE TABLE TIPO_INTERVENCION(" +
                 " _id INTEGER PRIMARY KEY," +
                 " sit_nombre TEXT NOT NULL)");
 
-        db.execSQL( "CREATE UNIQUE INDEX sit_nombre ON SITUACION(sit_nombre ASC)" );
+        db.execSQL( "CREATE UNIQUE INDEX sit_nombre ON TIPO_INTERVENCION(sit_nombre ASC)" );
 
-        db.execSQL("INSERT INTO SITUACION(_id, sit_nombre) VALUES(1,'Inicial')");
-        db.execSQL("INSERT INTO SITUACION(_id, sit_nombre) VALUES(2,'Información')");
-        db.execSQL("INSERT INTO SITUACION(_id, sit_nombre) VALUES(3,'Solicitada')");
-        db.execSQL("INSERT INTO SITUACION(_id, sit_nombre) VALUES(4,'Negociación')");
-        db.execSQL("INSERT INTO SITUACION(_id, sit_nombre) VALUES(5,'Denegada')");
-        db.execSQL("INSERT INTO SITUACION(_id, sit_nombre) VALUES(6,'Desestimada')");
-        db.execSQL("INSERT INTO SITUACION(_id, sit_nombre) VALUES(7,'Concedida')");
-        db.execSQL("INSERT INTO SITUACION(_id, sit_nombre) VALUES(8,'Firmada')");
+        db.execSQL("INSERT INTO TIPO_INTERVENCION(_id, sit_nombre) VALUES(1,'Inicial')");
+        db.execSQL("INSERT INTO TIPO_INTERVENCION(_id, sit_nombre) VALUES(2,'Información')");
+        db.execSQL("INSERT INTO TIPO_INTERVENCION(_id, sit_nombre) VALUES(3,'Solicitada')");
+        db.execSQL("INSERT INTO TIPO_INTERVENCION(_id, sit_nombre) VALUES(4,'Negociación')");
+        db.execSQL("INSERT INTO TIPO_INTERVENCION(_id, sit_nombre) VALUES(5,'Denegada')");
+        db.execSQL("INSERT INTO TIPO_INTERVENCION(_id, sit_nombre) VALUES(6,'Desestimada')");
+        db.execSQL("INSERT INTO TIPO_INTERVENCION(_id, sit_nombre) VALUES(7,'Concedida')");
+        db.execSQL("INSERT INTO TIPO_INTERVENCION(_id, sit_nombre) VALUES(8,'Firmada')");
 
         db.execSQL("ALTER TABLE PUNTO_INTERES ADD hip_sit_id INTEGER NOT NULL DEFAULT 1");
 

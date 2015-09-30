@@ -177,7 +177,7 @@ public class PuntoInteresDbAdapter {
 
         for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
         {
-            hipotecas.add(PuntoInteres.cursorToHipoteca(contexto, c));
+            hipotecas.add(PuntoInteres.cursorToPuntoInteres(contexto, c));
         }
 
         c.close();
